@@ -35,7 +35,7 @@ The site is available at http://127.0.0.1:8000
 
 users:
 
-'''
+```
 CREATE TABLE IF NOT EXISTS public.users
 (
 id bigint NOT NULL, name character varying(255) COLLATE pg_catalog."default" NOT NULL, email character varying(255)
@@ -47,11 +47,11 @@ CONSTRAINT users_email_unique UNIQUE (email)
 
 ALTER TABLE IF EXISTS public.users OWNER to postgres;
 
-'''
+```
 
 orders:
 
-'''
+```
 CREATE TABLE IF NOT EXISTS public.orders
 (
 id bigint NOT NULL, name character varying(256) COLLATE pg_catalog."default" NOT NULL, cost bigint NOT NULL, created_at
@@ -59,11 +59,11 @@ timestamp(0) without time zone, updated_at timestamp(0) without time zone, CONST
 );
 
 ALTER TABLE IF EXISTS public.orders OWNER to postgres;
-'''
+```
 
 user_carts:
 
-'''
+```
 CREATE TABLE IF NOT EXISTS public.user_carts
 (
 id bigint NOT NULL, user_id bigint NOT NULL, card_number character varying(20) COLLATE pg_catalog."default" NOT NULL,
@@ -73,11 +73,11 @@ REFERENCES public.users (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 ALTER TABLE IF EXISTS public.user_carts OWNER to postgres;
-'''
+```
 
 order_items:
 
-'''
+```
 CREATE TABLE IF NOT EXISTS public.order_items
 (
 id bigint NOT NULL, user_id bigint NOT NULL, order_id bigint NOT NULL, created_at timestamp(0) without time zone,
@@ -89,24 +89,24 @@ REFERENCES public.users (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 ALTER TABLE IF EXISTS public.order_items OWNER to postgres;
-'''
+```
 
 2. Написать запрос добавления тестовых данных в эти таблицы. Средствами Laravel описано в database/factories,
    database/seeders
 
 3. Написать запрос для вывода одной таблицы, которая содержит эти данные:
    user.id, user.name, orders.id, order_items.id, order_items.name, orders.created_at
-   '''
+   ```
    SELECT users.id AS user_id, users.name AS user_name, orders.id AS orders_id, order_items.id AS order_items_id,
    orders.name AS order_items_name, orders.created_at AS orders_created_at FROM order_items JOIN users ON
    users.id=order_items.user_id JOIN orders ON orders.id=order_items.order_id;
-   '''
+   ```
 
 5. Написать запрос удаления. Запрос должен удалять пользователя, корзину и все его заказы. DELETE FROM users WHERE id =
    1;
-   '''
+   ```
    DELETE FROM users WHERE users.id IN (9);
-   '''
+   ```
 
 2) Laravel. Можно без БД.
 
