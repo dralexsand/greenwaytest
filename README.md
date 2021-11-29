@@ -29,7 +29,7 @@ The site is available at http://127.0.0.1:8000
 Есть таблица users, user_carts, orders, order_items
 
 0. Реализовать связь этих таблиц.
-1. Написать запрос создания всех 4 таблиц со связями. Средствами Laravel описано в папке database/migrations
+1. Написать запрос создания всех 4 таблиц со связями. Реализация средствами Laravel описано в папке database/migrations
 
 Средствами PostgreSQL:
 
@@ -91,7 +91,7 @@ REFERENCES public.users (id) MATCH SIMPLE ON UPDATE CASCADE ON DELETE CASCADE
 ALTER TABLE IF EXISTS public.order_items OWNER to postgres;
 ```
 
-2. Написать запрос добавления тестовых данных в эти таблицы. Средствами Laravel описано в database/factories,
+2. Написать запрос добавления тестовых данных в эти таблицы. Реализацию средствами Laravel можно посмотреть в database/factories,
    database/seeders
 
 3. Написать запрос для вывода одной таблицы, которая содержит эти данные:
@@ -123,5 +123,4 @@ Passport
 10) Реализовать метод удаления нескольких пользователей по id
 
 Реализацию можно посмотреть в
-routes/web.php
-app/Http/Controllers/UserController.php
+routes/web.php и app/Http/Controllers/UserController.php
